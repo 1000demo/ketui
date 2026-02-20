@@ -1106,7 +1106,7 @@
             <div class="contact-icon"><i class="bi bi-envelope" style="color:#00f5a0;font-size:1.1rem;"></i></div>
             <div class="contact-info-text">
               <div class="contact-info-title">Email</div>
-              <a href="/cdn-cgi/l/email-protection#f9929c8d9897d79e988e98979d9ccbcab99e94989095d79a9694"><span class="__cf_email__" data-cfemail="660d031207084801071107080203545526010b070f0a4805090b"><span class="__cf_email__" data-cfemail="513a3425303f7f363026303f3534636211363c30383d7f323e3c">ketan.gawande23@gmail.com</span></span></a>
+              <a href="/cdn-cgi/l/email-protection#f9929c8d9897d79e988e98979d9ccbcab99e94989095d79a9694"><span class="__cf_email__" data-cfemail="660d031207084801071107080203545526010b070f0a4805090b"><span class="__cf_email__" data-cfemail="254e4051444b0b424452444b41401716654248444c490b464a48">[email&#160;protected]</span></span></a>
             </div>
           </div>
           <div class="contact-info-item">
@@ -1144,19 +1144,19 @@
           <div class="row g-3">
             <div class="col-md-6">
               <label class="form-label">Name</label>
-              <input type="text" id="contactName" class="form-ctrl" placeholder="Your name">
+              <input type="text" id="contactName" name="name" class="form-ctrl" placeholder="Your name">
             </div>
             <div class="col-md-6">
               <label class="form-label">Email</label>
-              <input type="email" id="contactEmail" class="form-ctrl" placeholder="your@email.com">
+              <input type="email" id="contactEmail" name="email" class="form-ctrl" placeholder="your@email.com">
             </div>
             <div class="col-12">
               <label class="form-label">Subject</label>
-              <input type="text" id="contactSubject" class="form-ctrl" placeholder="Hiring / Building something / Need a UI expert?">
+              <input type="text" id="contactSubject" name="subject" class="form-ctrl" placeholder="Hiring / Building something / Need a UI expert?">
             </div>
             <div class="col-12">
               <label class="form-label">Message</label>
-              <textarea id="contactMessage" class="form-ctrl" placeholder="Share your idea — tech, goals..."></textarea>
+              <textarea id="contactMessage" name="message" class="form-ctrl" placeholder="Share your idea — deadline, tech, goals..."></textarea>
             </div>
             <div class="col-12" id="formStatus" style="display:none;padding:0.85rem 1.1rem;border-radius:8px;font-size:0.82rem;font-family:'DM Mono',monospace;"></div>
             <div class="col-12">
@@ -1250,23 +1250,23 @@
   });
 
   // Send btn
+
   // ── Contact Form ──────────────────────────────────────────────────────────
   const FORMSPREE_ENDPOINT = 'https://formspree.io/f/xgolllzl';
-
   const sendBtn    = document.getElementById('sendBtn');
   const formStatus = document.getElementById('formStatus');
 
   function showStatus(msg, type) {
     formStatus.style.display = 'block';
     formStatus.innerHTML = msg;
-    var styles = {
-      success: { bg:'rgba(0,245,160,0.1)', border:'1px solid rgba(0,245,160,0.35)', color:'#00f5a0' },
-      error:   { bg:'rgba(255,80,80,0.1)',  border:'1px solid rgba(255,80,80,0.35)',  color:'#ff6b6b' },
+    var s = {
+      success: { bg:'rgba(0,245,160,0.1)',  border:'1px solid rgba(0,245,160,0.35)', color:'#00f5a0' },
+      error:   { bg:'rgba(255,80,80,0.1)',   border:'1px solid rgba(255,80,80,0.35)', color:'#ff6b6b' },
       info:    { bg:'rgba(255,255,255,0.05)',border:'1px solid rgba(255,255,255,0.1)',color:'#9999b5' }
     }[type] || {};
-    formStatus.style.background   = styles.bg;
-    formStatus.style.border       = styles.border;
-    formStatus.style.color        = styles.color;
+    formStatus.style.background = s.bg;
+    formStatus.style.border     = s.border;
+    formStatus.style.color      = s.color;
   }
 
   function isValidEmail(e) { return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e); }
@@ -1277,16 +1277,15 @@
     var subject = document.getElementById('contactSubject').value.trim();
     var message = document.getElementById('contactMessage').value.trim();
 
-    if (!name)                         { showStatus('&#9888; Please enter your name.',             'error'); return; }
-    if (!email || !isValidEmail(email)){ showStatus('&#9888; Please enter a valid email address.', 'error'); return; }
-    if (!subject)                      { showStatus('&#9888; Please enter a subject.',             'error'); return; }
-    if (!message)                      { showStatus('&#9888; Please write a message.',             'error'); return; }
+    if (!name)                          { showStatus('&#9888; Please enter your name.',              'error'); return; }
+    if (!email || !isValidEmail(email)) { showStatus('&#9888; Please enter a valid email address.',  'error'); return; }
+    if (!subject)                       { showStatus('&#9888; Please enter a subject.',              'error'); return; }
+    if (!message)                       { showStatus('&#9888; Please write a message.',              'error'); return; }
 
     sendBtn.disabled    = true;
     sendBtn.textContent = 'Sending\u2026';
     showStatus('Sending your message\u2026', 'info');
 
-    // Use FormData — works with Formspree without any CORS/JSON issues
     var fd = new FormData();
     fd.append('name',    name);
     fd.append('email',   email);
@@ -1315,11 +1314,12 @@
         sendBtn.textContent = 'Send Message \u2736';
       }
     } catch(err) {
-      showStatus('&#9888; Network error \u2014 please try again or email me directly.', 'error');
+      showStatus('&#9888; Network error — please try again or email me directly.', 'error');
       sendBtn.disabled    = false;
       sendBtn.textContent = 'Send Message \u2736';
     }
   });
+
 </script>
 </body>
 </html>
