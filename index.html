@@ -435,6 +435,51 @@
     footer { border-top: 1px solid var(--border); padding: 2rem 0; text-align: center; font-size: 0.72rem; color: var(--muted); }
     footer span { color: var(--accent); }
 
+    /* SCROLL TO TOP */
+    #scrollTopBtn {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      z-index: 500;
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      border: 1px solid rgba(0,245,160,0.4);
+      background: rgba(10,10,15,0.85);
+      backdrop-filter: blur(12px);
+      color: var(--accent);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: none;
+      opacity: 0;
+      transform: translateY(20px) scale(0.85);
+      transition: opacity 0.4s ease, transform 0.4s ease, box-shadow 0.3s ease, background 0.3s ease;
+      box-shadow: 0 0 16px rgba(0,245,160,0.25), 0 0 40px rgba(0,245,160,0.1);
+      animation: scrollBtnPulse 2.5s ease-in-out infinite;
+      pointer-events: none;
+    }
+    #scrollTopBtn.visible {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+      pointer-events: auto;
+    }
+    #scrollTopBtn:hover {
+      background: rgba(0,245,160,0.15);
+      box-shadow: 0 0 24px rgba(0,245,160,0.55), 0 0 60px rgba(0,245,160,0.25);
+      transform: translateY(-4px) scale(1.08);
+    }
+    #scrollTopBtn svg {
+      transition: transform 0.3s ease;
+    }
+    #scrollTopBtn:hover svg {
+      transform: translateY(-2px);
+    }
+    @keyframes scrollBtnPulse {
+      0%, 100% { box-shadow: 0 0 16px rgba(0,245,160,0.25), 0 0 40px rgba(0,245,160,0.1); }
+      50%       { box-shadow: 0 0 28px rgba(0,245,160,0.5), 0 0 70px rgba(0,245,160,0.2); }
+    }
+
     @keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
     .reveal { opacity: 0; transform: translateY(30px); transition: all 0.7s cubic-bezier(0.23, 1, 0.32, 1); }
     .reveal.visible { opacity: 1; transform: translateY(0); }
@@ -443,6 +488,32 @@
     ::-webkit-scrollbar { width: 4px; }
     ::-webkit-scrollbar-track { background: var(--bg); }
     ::-webkit-scrollbar-thumb { background: var(--muted); border-radius: 2px; }
+
+    /* HOBBIES */
+    .hobbies-list { display: flex; flex-wrap: wrap; gap: 0.75rem; }
+    .hobby-item {
+      display: flex; align-items: center; gap: 0.65rem;
+      background: rgba(255,255,255,0.03); border: 1px solid var(--border);
+      border-radius: 12px; padding: 0.65rem 1.2rem;
+      font-size: 0.82rem; color: var(--text-dim);
+      opacity: 0; transform: translateY(20px);
+      animation: hobbyIn 0.5s cubic-bezier(0.23,1,0.32,1) forwards;
+      animation-delay: calc(0.15s * var(--hi) + 0.2s);
+      animation-play-state: paused;
+      transition: border-color 0.3s, color 0.3s, transform 0.3s, background 0.3s;
+    }
+    .reveal.visible .hobby-item { animation-play-state: running; }
+    .hobby-item:hover {
+      border-color: rgba(0,245,160,0.4);
+      color: var(--text);
+      background: rgba(0,245,160,0.06);
+      transform: translateY(-4px);
+    }
+    .hobby-icon { font-size: 1.3rem; line-height: 1; }
+    .hobby-label { font-family: 'DM Mono', monospace; letter-spacing: 0.04em; }
+    @keyframes hobbyIn {
+      to { opacity: 1; transform: translateY(0); }
+    }
     
       @keyframes waveHand {
       0%,100% { transform: rotate(0deg); }
@@ -1025,6 +1096,24 @@
           <span class="tool-chip">Microsoft Visual Studio</span> 
           <span class="tool-chip">Azure DevOps</span>          
         </div>
+        <!-- Hobbies -->
+        <div class="hobbies-wrap reveal reveal-delay-2" style="margin-top:2rem;">
+          <p class="section-label" style="margin-bottom:1rem;">✦ Hobbies</p>
+          <div class="hobbies-list">
+            <div class="hobby-item" style="--hi:0">
+              <span class="hobby-icon">🏀</span>
+              <span class="hobby-label">Playing Basketball</span>
+            </div>
+            <div class="hobby-item" style="--hi:1">
+              <span class="hobby-icon">🤝</span>
+              <span class="hobby-label">Making Friends</span>
+            </div>
+            <div class="hobby-item" style="--hi:2">
+              <span class="hobby-icon">✈️</span>
+              <span class="hobby-label">Travelling</span>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -1109,7 +1198,7 @@
             <div class="contact-icon"><i class="bi bi-envelope" style="color:#00f5a0;font-size:1.1rem;"></i></div>
             <div class="contact-info-text">
               <div class="contact-info-title">Email</div>
-              <a href="/cdn-cgi/l/email-protection#f9929c8d9897d79e988e98979d9ccbcab99e94989095d79a9694"><span class="__cf_email__" data-cfemail="660d031207084801071107080203545526010b070f0a4805090b"><span class="__cf_email__" data-cfemail="254e4051444b0b424452444b41401716654248444c490b464a48">ketan.gawande23@gmail.com</span></span></a>
+              <a href="/cdn-cgi/l/email-protection#f9929c8d9897d79e988e98979d9ccbcab99e94989095d79a9694"><span class="__cf_email__" data-cfemail="660d031207084801071107080203545526010b070f0a4805090b"><span class="__cf_email__" data-cfemail="254e4051444b0b424452444b41401716654248444c490b464a48"><span class="__cf_email__" data-cfemail="640f0110050a4a030513050a00015657240309050d084a070b09">[email&#160;protected]</span></span></span></a>
             </div>
           </div>
           <div class="contact-info-item">
@@ -1180,8 +1269,23 @@
   </div>
 </footer>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js"></script>
+<!-- SCROLL TO TOP BUTTON -->
+<button id="scrollTopBtn" aria-label="Scroll to top" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"></polyline></svg>
+</button>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js"></script>
 <script>
+  // Scroll to top button
+  const scrollTopBtn = document.getElementById('scrollTopBtn');
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 400) {
+      scrollTopBtn.classList.add('visible');
+    } else {
+      scrollTopBtn.classList.remove('visible');
+    }
+  });
+
   // Custom cursor
   const cursor = document.getElementById('cursor');
   const ring = document.getElementById('cursorRing');
@@ -1317,12 +1421,11 @@
         sendBtn.textContent = 'Send Message \u2736';
       }
     } catch(err) {
-      showStatus('&#9888; Network error — please try again or email me directly.', 'error');
+      showStatus('&#9888; Network error. Please try again.', 'error');
       sendBtn.disabled    = false;
       sendBtn.textContent = 'Send Message \u2736';
     }
   });
-
 </script>
 </body>
 </html>
