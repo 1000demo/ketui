@@ -523,6 +523,43 @@
       60%      { transform: rotate(-6deg); }
       75%      { transform: rotate(10deg); }
     }
+
+    /* Hobby icon animations */
+    @keyframes basketballRotate {
+      0%   { transform: rotate(0deg) scale(1); }
+      50%  { transform: rotate(180deg) scale(1.15); }
+      100% { transform: rotate(360deg) scale(1); }
+    }
+    @keyframes handshakeShake {
+      0%,100% { transform: translateX(0) rotate(0deg); }
+      20%     { transform: translateX(-4px) rotate(-8deg); }
+      40%     { transform: translateX(4px) rotate(8deg); }
+      60%     { transform: translateX(-3px) rotate(-5deg); }
+      80%     { transform: translateX(3px) rotate(5deg); }
+    }
+    @keyframes airplaneFly {
+      0%   { transform: translateX(0) translateY(0) rotate(0deg); }
+      25%  { transform: translateX(6px) translateY(-5px) rotate(-8deg); }
+      50%  { transform: translateX(12px) translateY(-2px) rotate(5deg); }
+      75%  { transform: translateX(6px) translateY(-7px) rotate(-5deg); }
+      100% { transform: translateX(0) translateY(0) rotate(0deg); }
+    }
+
+    .icon-basketball {
+      display: inline-block;
+      animation: basketballRotate 2s linear infinite;
+      transform-origin: center;
+    }
+    .icon-handshake {
+      display: inline-block;
+      animation: handshakeShake 1.5s ease-in-out infinite;
+      transform-origin: center;
+    }
+    .icon-airplane {
+      display: inline-block;
+      animation: airplaneFly 2.5s ease-in-out infinite;
+      transform-origin: center;
+    }
   </style>
 </head>
 <body>
@@ -1101,15 +1138,15 @@
           <p class="section-label" style="margin-bottom:1rem;">✦ Hobbies</p>
           <div class="hobbies-list">
             <div class="hobby-item" style="--hi:0">
-              <span class="hobby-icon">🏀</span>
+              <span class="hobby-icon"><span class="icon-basketball">🏀</span></span>
               <span class="hobby-label">Playing Basketball</span>
             </div>
             <div class="hobby-item" style="--hi:1">
-              <span class="hobby-icon">🤝</span>
+              <span class="hobby-icon"><span class="icon-handshake">🤝</span></span>
               <span class="hobby-label">Making Friends</span>
             </div>
             <div class="hobby-item" style="--hi:2">
-              <span class="hobby-icon">✈️</span>
+              <span class="hobby-icon"><span class="icon-airplane">✈️</span></span>
               <span class="hobby-label">Travelling</span>
             </div>
           </div>
