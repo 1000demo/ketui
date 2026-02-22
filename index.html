@@ -102,6 +102,94 @@
     .nav-link:hover { color: var(--accent) !important; }
     .nav-link:hover::after { width: 60%; }
 
+    /* Mobile navbar dropdown */
+    @media (max-width: 991px) {
+      /* Hide custom cursor on touch devices */
+      .cursor, .cursor-ring { display: none; }
+      body { cursor: auto; }
+
+      .navbar-collapse {
+        background: rgba(10, 10, 15, 0.98);
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        margin-top: 0.75rem;
+        padding: 0.5rem 0;
+        backdrop-filter: blur(20px);
+      }
+      .navbar-nav {
+        gap: 0 !important;
+      }
+      .nav-link {
+        padding: 0.85rem 1.5rem !important;
+        border-bottom: 1px solid var(--border);
+        font-size: 0.82rem !important;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        letter-spacing: 0.1em;
+      }
+      .nav-link:last-child {
+        border-bottom: none;
+      }
+      .nav-link::after {
+        display: none;
+      }
+      .nav-link:hover, .nav-link:active {
+        background: rgba(0, 245, 160, 0.06);
+        padding-left: 1.8rem !important;
+        transition: all 0.2s ease;
+      }
+
+      /* Hero section mobile fixes */
+      #hero {
+        padding-top: 5rem;
+        min-height: auto;
+        padding-bottom: 3rem;
+      }
+      .hero-title {
+        font-size: clamp(2.2rem, 10vw, 3.5rem) !important;
+        letter-spacing: -1.5px;
+      }
+      .hero-cta {
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+      }
+      .btn-outline-glow {
+        margin-left: 0 !important;
+        text-align: center;
+      }
+      .btn-glow, .btn-outline-glow {
+        display: block;
+        width: 100%;
+        text-align: center;
+      }
+
+      /* Hero code block on mobile */
+      .hero-code {
+        margin-top: 2rem;
+        font-size: 0.72rem !important;
+        overflow-x: auto;
+      }
+
+      /* Section padding reduction */
+      #portfolio, #about, #experience, #contact {
+        padding: 5rem 0 !important;
+      }
+    }
+
+    @media (max-width: 575px) {
+      .navbar-toggler {
+        padding: 0.4rem 0.6rem;
+      }
+      .hero-sub {
+        font-size: 0.8rem;
+      }
+      .stat-num {
+        font-size: 1.8rem;
+      }
+    }
+
     /* HERO */
     #hero { min-height: 100vh; display: flex; align-items: center; position: relative; overflow: hidden; }
     .hero-tag {
@@ -1044,7 +1132,7 @@
             <!-- Stats -->
             <div class="profile-stats">
               <div class="profile-stat">
-                <span class="profile-stat-num">10</span>
+                <span class="profile-stat-num">11+</span>
                 <span class="profile-stat-lbl">Years</span>
               </div>
               <div class="profile-stat">
